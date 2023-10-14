@@ -1,0 +1,15 @@
+[Unit]
+Description=Shred specified folders after user inactivity
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/deadmansw.sh
+Restart=on-failure
+User=root
+# If you want the service to run with capabilities instead of full root, you can use CapabilityBoundingSet.
+# For example: CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH 
+EnvironmentFile=-/etc/deadmansw/deadmansw.conf
+
+[Install]
+WantedBy=multi-user.target
