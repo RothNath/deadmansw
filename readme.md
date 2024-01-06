@@ -2,7 +2,7 @@ DeadMan's Switch (dmsw) User Manual
 
 Introduction
 
-DeadMan's Switch (dmsw) is a Linux-based tool designed to secure sensitive data by automatically shredding specified directories after a defined period of inactivity by the user. This tool starts as a service on boot, monitoring user activity based on login events.
+DeadMan's Switch (dmsw) is a Linux-based tool designed to secure sensitive data by automatically shredding specified directories after a defined period of inactivity by the user. 
 
 Features
 
