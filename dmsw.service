@@ -1,0 +1,17 @@
+[Unit]
+Description=Deadman's Switch a program designed to distroy data after a configured period of user inactivity
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/dmsw.sh
+Restart=on-failure
+User=root
+# If you want the service to run with capabilities instead of full root, you can use CapabilityBoundingSet.
+# For example: CapabilityBoundingSet=CAP_DAC_OVERRIDE CAP_DAC_READ_SEARCH 
+EnvironmentFile=-/etc/dmsw/dmsw.conf
+StandardOutput=append:/var/log/dmsw.log
+StandardError=append:/var/log/dmsw.log
+
+[Install]
+WantedBy=multi-user.target
