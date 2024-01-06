@@ -15,20 +15,30 @@ Helper utility for easy status checks
 Dependencies
 
 awk: A text processing tool that's used in the script for parsing outputs of various commands.
+
 bash: The shell the script is written in.
+
 bc: An arbitrary precision calculator language, used in the script to evaluate a floating-point condition. May need to be installed separately on minimal installations.
+
 cut: Used for cutting out sections from each line of files. Typically comes pre-installed with most distributions, as it's part of the coreutils package.
+
 date: Used to convert and compute timestamps.
+
 grep: A text searching utility
+
 hwclock: Used to access the hardware clock (Real-Time Clock, RTC) and compare it with the system clock.
+
 last: Provides the last login info for users. Comes pre-installed with most distributions, as it's part of the sysvinit-tools or util-linux package, depending on the distribution.
+
 ntpdate: Used to query NTP servers to check the time offset.
+
 mapfile: Used for reading Arrays
+
 tee: Used to append to files (in this case, logs). Part of the coreutils package, it's typically pre-installed.
+
 tr: Used to translate or delete characters. In this script, it's used to remove double quotes. Like cut, this is part of the coreutils package and typically comes pre-installed.
 
-
-Automated Intallation
+Automated Intallation (TODO)
 
 Manual Installation (Most Linux Distributions)
 
