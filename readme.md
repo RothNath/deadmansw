@@ -110,7 +110,7 @@ Q: What happens if someone pulls the power on my computer and takes the HD?
 A: It won't complete the deletion / shred. It'll try if it's powered on in a VM for example, as long as the time hasn't been messed with.
 
 Author
-Contact: nath.jroth@protonmail.com
+Contact: nath.jroth@p r o t o n m a i l. co m
 
 
 
