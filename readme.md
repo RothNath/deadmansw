@@ -95,7 +95,6 @@ Always Backup: Before setting this tool on any directory, always ensure you have
 Testing: It's crucial to test the tool in a safe environment (e.g., on dummy data) before deploying it on actual sensitive directories.
 Service Start: Ensure that the systemd service is started after any configurations or changes: sudo systemctl start deadmansw.
 
-Conclusion
 Deadmansw is a powerful tool designed with data security in mind. While it provides a layer of safety against unauthorized data access, always handle with care to avoid unintentional data loss.
 
 FAQ: 
