@@ -1,119 +1,153 @@
-DeadMan's Switch (dmsw) User Manual
+Markdown
 
-Introduction
+# DeadMan's Switch (dmsw) User Manual
 
-DeadMan's Switch (dmsw) is a Linux-based tool designed to secure sensitive data by automatically shredding specified directories after a defined period of inactivity by the user. 
+---
 
-Features
+## Introduction
 
-Monitor specified user's login for inactivity.
-Configurable folders to be shredded.
-Configurable inactivity duration leading to data shredding.
-On/off toggle for safety.
-Helper utility for easy status checks
+**DeadMan's Switch (dmsw)** is a Linux-based tool designed to secure sensitive data by automatically shredding specified directories after a defined period of inactivity by the user.
 
-Dependencies
+---
 
-awk: A text processing tool that's used in the script for parsing outputs of various commands.
+## Features
 
-bash: The shell the script is written in.
+* **Monitor specified user's login** for inactivity.
 
-bc: An arbitrary precision calculator language, used in the script to evaluate a floating-point condition. May need to be installed separately on minimal installations.
+* **Configurable folders** to be shredded.
 
-cut: Used for cutting out sections from each line of files. Typically comes pre-installed with most distributions, as it's part of the coreutils package.
+* **Configurable inactivity duration** leading to data shredding.
 
-date: Used to convert and compute timestamps.
+* **On/off toggle** for safety.
 
-grep: A text searching utility
+* **Helper utility** for easy status checks.
 
-hwclock: Used to access the hardware clock (Real-Time Clock, RTC) and compare it with the system clock.
+---
 
-last: Provides the last login info for users. Comes pre-installed with most distributions, as it's part of the sysvinit-tools or util-linux package, depending on the distribution.
+## Dependencies
 
-ntpdate: Used to query NTP servers to check the time offset.
+* **`awk`**: A text processing tool that's used in the script for parsing outputs of various commands.
 
-mapfile: Used for reading Arrays
+* **`bash`**: The shell the script is written in.
 
-tee: Used to append to files (in this case, logs). Part of the coreutils package, it's typically pre-installed.
+* **`bc`**: An arbitrary precision calculator language, used in the script to evaluate a floating-point condition. May need to be installed separately on minimal installations.
 
-tr: Used to translate or delete characters. In this script, it's used to remove double quotes. Like cut, this is part of the coreutils package and typically comes pre-installed.
+* **`cut`**: Used for cutting out sections from each line of files. Typically comes pre-installed with most distributions, as it's part of the `coreutils` package.
 
-Automated Intallation (TODO)
+* **`date`**: Used to convert and compute timestamps.
 
-Manual Installation (Most Linux Distributions)
+* **`grep`**: A text searching utility.
 
-Copy the script (dmsw.sh) to /usr/local/bin/ and ensure it's executable
+* **`hwclock`**: Used to access the hardware clock (Real-Time Clock, RTC) and compare it with the system clock.
 
-sudo cp dmsw.sh /usr/local/bin/dmsw.sh
-sudo chmod +x /usr/local/bin/dmsw.sh
+* **`last`**: Provides the last login info for users. Comes pre-installed with most distributions, as it's part of the `sysvinit-tools` or `util-linux` package, depending on the distribution.
 
-Copy the helper file (dmsw-helper) to /user/local/bin/ and ensure it's executable
+* **`ntpdate`**: Used to query NTP servers to check the time offset.
 
-sudo cp dmsw-helper /usr/local/bin/dmsw-helper
-sudo chmod +x /usr/local/bin/dmsw-helper
+* **`mapfile`**: Used for reading Arrays.
 
-Copy the service file (dmsw.service) to /etc/systemd/system/
-sudo cp dmsw.service /etc/systemd/system/dmsw.service
+* **`tee`**: Used to append to files (in this case, logs). Part of the `coreutils` package, it's typically pre-installed.
 
-Place the configuration file (dmsw.conf) in its directory:
+* **`tr`**: Used to translate or delete characters. In this script, it's used to remove double quotes. Like `cut`, this is part of the `coreutils` package and typically comes pre-installed.
 
-sudo mkdir /etc/dmsw  # Create the configuration directory
-sudo cp dmsw.conf /etc/dmsw/dmsw.conf
+---
 
-Configuration
+## Installation
 
-The main configuration file for Deadman's Switch is dmsw.conf normally located at /etc/dmsw/dmsw.conf
+### Automated Installation (TODO)
 
-Parameters
+*(This section is currently a placeholder for future automation.)*
 
-ENABLED: This can be set to "yes" or "no". It determines whether the tool is active. By default, for safety reasons, this is set to "no".
-MONITORED_USER: Specify the username whose inactivity will be monitored.
-TIME_MINUTES: Inactivity duration in minutes.
-TIME_HOURS: Inactivity duration in hours.
-TIME_DAYS: Inactivity duration in days.
-TIME_WEEKS: Inactivity duration in weeks.
-TIME_MONTHS: Inactivity duration in months.
-TARGET_X: Paths to the files or directories you want to be shredded when the switch activates. Add multiple target lines for multiple paths (e.g., TARGET_1, TARGET_2, etc.)
+### Manual Installation (Most Linux Distributions)
 
-Usage:
+1.  **Copy the script (`dmsw.sh`) to `/usr/local/bin/`** and ensure it's executable:
 
-Starting the service
+    ```bash
+    sudo cp dmsw.sh /usr/local/bin/dmsw.sh
+    sudo chmod +x /usr/local/bin/dmsw.sh
+    ```
+
+2.  **Copy the helper file (`dmsw-helper`) to `/usr/local/bin/`** and ensure it's executable:
+
+    ```bash
+    sudo cp dmsw-helper /usr/local/bin/dmsw-helper
+    sudo chmod +x /usr/local/bin/dmsw-helper
+    ```
+
+3.  **Copy the service file (`dmsw.service`) to `/etc/systemd/system/`**:
+
+    ```bash
+    sudo cp dmsw.service /etc/systemd/system/dmsw.service
+    ```
+
+4.  **Place the configuration file (`dmsw.conf`) in its directory**:
+
+    ```bash
+    sudo mkdir -p /etc/dmsw # Create the configuration directory if it doesn't exist
+    sudo cp dmsw.conf /etc/dmsw/dmsw.conf
+    ```
+
+---
+
+## Configuration
+
+The main configuration file for DeadMan's Switch is **`dmsw.conf`**, normally located at `/etc/dmsw/dmsw.conf`.
+
+### Parameters
+
+* **`ENABLED`**: This can be set to `"yes"` or `"no"`. It determines whether the tool is active. By default, for safety reasons, this is set to `"no"`.
+
+* **`MONITORED_USER`**: Specify the username whose inactivity will be monitored.
+
+* **`TIME_MINUTES`**: Inactivity duration in minutes.
+
+* **`TIME_HOURS`**: Inactivity duration in hours.
+
+* **`TIME_DAYS`**: Inactivity duration in days.
+
+* **`TIME_WEEKS`**: Inactivity duration in weeks.
+
+* **`TIME_MONTHS`**: Inactivity duration in months.
+
+* **`TARGET_X`**: Paths to the files or directories you want to be shredded when the switch activates. Add multiple target lines for multiple paths (e.g., `TARGET_1`, `TARGET_2`, etc.).
+
+---
+
+## Usage
+
+### Starting the service
+
 systemctl start dmsw
 systemctl status dmsw
 
-Logging
+## Safety Notes
 
-/var/log/dmsw.log is used by default, may need permissions depending on the system / user setup to work properly.
+* **Always Backup**: Before setting this tool on any directory, always ensure you have **backups of essential data**. The `shred` command is irreversible.
 
-Other commands
+* **Testing**: It's crucial to test the tool in a safe environment (e.g., on dummy data) before deploying it on actual sensitive directories.
 
-deadmansw-helper  # Check the time remaining on shredding after the service is started
+* **Service Start**: Ensure that the systemd service is started after any configurations or changes: `sudo systemctl start deadmansw`.
 
-Safety Notes
+Deadmansw is a powerful tool designed with data security in mind. While it provides a layer of safety against unauthorized data access, **always handle with care to avoid unintentional data loss**.
 
-Always Backup: Before setting this tool on any directory, always ensure you have backups of essential data. The shred command is irreversible.
-Testing: It's crucial to test the tool in a safe environment (e.g., on dummy data) before deploying it on actual sensitive directories.
-Service Start: Ensure that the systemd service is started after any configurations or changes: sudo systemctl start deadmansw.
+---
 
-Deadmansw is a powerful tool designed with data security in mind. While it provides a layer of safety against unauthorized data access, always handle with care to avoid unintentional data loss.
+## FAQ
 
-FAQ: 
+**Q: Do you know that `shred` doesn't completely delete data on an SSD?**
+A: Yes, a release version will hopefully have the ability to use `hdparm`'s enhanced erase.
 
-Q: Do you know that shred doesn't completely delete data on an SSD?
-A: Yes, release version I hope will have the ability to use enhanced erase hdparm's. 
+**Q: What happens if I sit logged in forever and don't have a lock screen or trigger a logout?**
+A: It will still shred; it's based on the last user login of any type. Using `sudo` counts as login activity, for example.
 
-Q: What happens if I sit logged in forever and don't have a lock screen or trigger a logout?
-A: It will still shred, it's from last user login of any type, using sudo counts as login activity for example.
+**Q: What happens if someone pulls the power on my computer and takes the HD?**
+A: It won't complete the deletion/shred. It'll try if it's powered on in a VM, for example, as long as the time hasn't been messed with.
 
-Q: What happens if someone pulls the power on my computer and takes the HD?
-A: It won't complete the deletion / shred. It'll try if it's powered on in a VM for example, as long as the time hasn't been messed with.
+---
 
-Author
-Contact: nath.jroth@p r o t o n m a i l. co m
+## Author Contact
 
-
-
-
+nath.jroth@p r o t o n m a i l.com
 
 
 
